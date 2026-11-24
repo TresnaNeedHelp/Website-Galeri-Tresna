@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tresna's Website - Warm Pink Edition</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS VARIABLES & REUSABLE COMPONENT STYLES -->
+    <style>
+        :root {
+            /* Light Mode: Warm Pink & High Contrast Berry */
+            --bg-gradient: linear-gradient(135deg, #fff5f8 0%, #ffe6ef 45%, #fff9fb 100%);
+            --bg-header: rgba(255, 255, 255, 0.85);
+            --bg-card: #ffffff;
+            --bg-nav-pill: #fff0f5;
+            --bg-nav-active: #ffffff;
+            --border-pink: #f7dce6;
+            --primary-pink: #ffb5d6;
+            --primary-light: #fff0f5;
+            --accent-berry: #d44d86;
+            --accent-hover: #b83a6f;
+            --text-dark: #3d1c2a;
+            --text-muted: #7a4b5e;
+            --card-shadow: 0 4px 20px -2px rgba(212, 77, 134, 0.08);
+            --card-shadow-hover: 0 12px 28px -4px rgba(212, 77, 134, 0.16);
+        }
+
+        html.dark {
+            /* Dark Mode: Deep Berry / Warm Wine Gradient (Satu Nuansa) */
+            --bg-gradient: linear-gradient(135deg, #170a10 0%, #26101b 45%, #1a0b12 100%);
+            --bg-header: rgba(28, 12, 20, 0.85);
+            --bg-card: #241019;
+            --bg-nav-pill: #331725;
+            --bg-nav-active: #472034;
+            --border-pink: #4a2336;
+            --primary-pink: #ff85b8;
+            --primary-light: #361827;
+            --accent-berry: #f0659e;
+            --accent-hover: #ff85b8;
+            --text-dark: #fcebf2;
+            --text-muted: #c99ab0;
+            --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+            --card-shadow-hover: 0 12px 28px -4px rgba(240, 101, 158, 0.18);
+        }
+
+        body {
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-dark);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background 0.35s ease, color 0.35s ease;
+        }
+
+        /* Header & Footer Adaptive */
+        .header-adaptive {
+            background-color: var(--bg-header);
+            border-color: var(--border-pink);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .footer-adaptive {
+            background-color: var(--bg-card);
+            border-color: var(--border-pink);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .mobile-menu-adaptive {
+            background-color: var(--bg-card);
+            border-color: var(--border-pink);
+        }
+
+        /* Reusable Card Component */
+        .card-warm {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-pink);
+            border-radius: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-warm:hover {
+            box-shadow: var(--card-shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Reusable Buttons */
+        .btn-primary {
+            background-color: var(--accent-berry);
+            color: #ffffff;
+            padding: 0.85rem 1.75rem;
+            border-radius: 1rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 14px rgba(212, 77, 134, 0.25);
+            transition: all 0.2s ease;
+        }
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 77, 134, 0.35);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-card);
+            color: var(--text-dark);
+            border: 1px solid var(--border-pink);
+            padding: 0.85rem 1.75rem;
+            border-radius: 1rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.2s ease;
+        }
+        .btn-secondary:hover {
+            background-color: var(--primary-light);
+            border-color: var(--primary-pink);
+        }
+
+        /* Badge Warm Component */
+        .badge-warm {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 0.9rem;
+            border-radius: 9999px;
+            background-color: var(--primary-light);
+            border: 1px solid var(--border-pink);
+            color: var(--accent-berry);
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* Nav Tabs */
+        .nav-container-pill {
+            background-color: var(--bg-nav-pill);
+            border-color: var(--border-pink);
+        }
+
+        .nav-tab {
+            padding: 0.5rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            border-radius: 9999px;
+            transition: all 0.2s ease;
+            color: var(--text-muted);
+        }
+        .nav-tab:hover {
+            color: var(--text-dark);
+        }
+        .nav-tab.active {
+            background-color: var(--bg-nav-active);
+            color: var(--accent-berry);
+            box-shadow: 0 2px 8px rgba(212, 77, 134, 0.15);
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 9999px;
+            background-color: var(--bg-nav-pill);
+            border: 1px solid var(--border-pink);
+            color: var(--accent-berry);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+        }
+        .theme-toggle-btn:hover {
+            background-color: var(--accent-berry);
+            color: #ffffff;
+            transform: rotate(15deg) scale(1.05);
+        }
+
+        /* Text Utilities Mapped to CSS Vars */
+        .text-main { color: var(--text-dark); }
+        .text-sub { color: var(--text-muted); }
+        .text-accent { color: var(--accent-berry); }
+        .border-adaptive { border-color: var(--border-pink); }
+        .bg-pill { background-color: var(--primary-light); }
+
+        /* Masonry 2 Kolom Layout */
+        .masonry-2-col {
+            column-count: 2;
+            column-gap: 1.25rem;
+        }
+        @media (max-width: 640px) {
+            .masonry-2-col {
+                column-count: 1;
+            }
+        }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.35s ease-out forwards;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-pink);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-berry);
+        }
+    </style>
+</head>
+
+<body class="min-h-full flex flex-col antialiased selection:bg-[#ffb5d6] selection:text-[#3d1c2a]">
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="toast" class="fixed bottom-6 right-6 transform translate-y-20 opacity-0 transition-all duration-300 z-50 bg-[#3d1c2a] text-white px-5 py-3 rounded-2xl shadow-2xl border border-[#f0659e]/40 flex items-center space-x-3 pointer-events-none">
+        <i class="fa-solid fa-circle-check text-rose-300 text-lg"></i>
+        <span id="toast-message" class="text-sm font-semibold">Teks disalin!</span>
+    </div>
+
+    <!-- STICKY NAVBAR HEADER -->
+    <header class="sticky top-0 z-40 header-adaptive backdrop-blur-md border-b shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                
+                <!-- Logo & Brand Header -->
+                <button onclick="switchPage('home')" class="flex items-center space-x-3 group focus:outline-none">
+                    <div class="w-10 h-10 rounded-2xl bg-[#d44d86] flex items-center justify-center text-white shadow-md shadow-rose-400/30 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-camera text-lg"></i>
+                    </div>
+                    <div class="text-left">
+                        <span id="brand-title" class="text-lg font-extrabold tracking-tight text-main block leading-none">TresnaLens</span>
+                        <span id="brand-subtitle" class="text-xs font-semibold text-sub">Website tresna ceritanya</span>
+                    </div>
+                </button>
+
+                <!-- Desktop Navigation Bar + Dark/Light Toggle -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <nav class="flex items-center space-x-1 nav-container-pill p-1.5 rounded-full border">
+                        <button onclick="switchPage('home')" id="nav-btn-home" class="nav-tab flex items-center gap-2">
+                            <i class="fa-solid fa-house text-xs"></i>Home
+                        </button>
+                        <button onclick="switchPage('gallery')" id="nav-btn-gallery" class="nav-tab flex items-center gap-2">
+                            <i class="fa-solid fa-images text-xs"></i>Gallery
+                        </button>
+                        <button onclick="switchPage('about')" id="nav-btn-about" class="nav-tab flex items-center gap-2">
+                            <i class="fa-solid fa-user text-xs"></i>About Me
+                        </button>
+                        <button onclick="switchPage('social')" id="nav-btn-social" class="nav-tab flex items-center gap-2">
+                            <i class="fa-solid fa-share-nodes text-xs"></i>Social Media
+                        </button>
+                    </nav>
+
+                    <!-- Tombol Dark Mode / Light Mode di sebelah Social Media -->
+                    <button onclick="toggleTheme()" id="theme-toggle-desktop" aria-label="Ganti Tema Gelap/Terang" title="Ganti Mode Gelap / Terang" class="theme-toggle-btn focus:outline-none shadow-sm">
+                        <i id="theme-icon-desktop" class="fa-solid fa-moon text-base"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Controls (Theme Toggle + Hamburger) -->
+                <div class="flex items-center space-x-2 md:hidden">
+                    <button onclick="toggleTheme()" id="theme-toggle-mobile" aria-label="Ganti Tema Gelap/Terang" class="theme-toggle-btn focus:outline-none">
+                        <i id="theme-icon-mobile" class="fa-solid fa-moon text-sm"></i>
+                    </button>
+                    <button id="mobile-menu-btn" aria-label="Buka Menu" class="p-2.5 rounded-xl text-main hover:bg-pill transition-colors focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden mobile-menu-adaptive border-b px-4 pt-3 pb-5 space-y-2">
+            <button onclick="switchPage('home')" class="flex items-center w-full px-4 py-3 rounded-xl text-base font-bold text-main hover:bg-pill">
+                <i class="fa-solid fa-house w-6 text-accent"></i>Home
+            </button>
+            <button onclick="switchPage('gallery')" class="flex items-center w-full px-4 py-3 rounded-xl text-base font-bold text-main hover:bg-pill">
+                <i class="fa-solid fa-images w-6 text-accent"></i>Gallery
+            </button>
+            <button onclick="switchPage('about')" class="flex items-center w-full px-4 py-3 rounded-xl text-base font-bold text-main hover:bg-pill">
+                <i class="fa-solid fa-user w-6 text-accent"></i>About Me
+            </button>
+            <button onclick="switchPage('social')" class="flex items-center w-full px-4 py-3 rounded-xl text-base font-bold text-main hover:bg-pill">
+                <i class="fa-solid fa-share-nodes w-6 text-accent"></i>Social Media
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER (MULTI-PAGE TABS) -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        
+        <!-- PAGE 1: HOME -->
+        <section id="page-home" class="page-view animate-fade-in">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[480px]">
+                
+                <!-- Hero Text & Action -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="badge-warm">
+                        <i class="fa-solid fa-sparkles"></i> Halaman page rumah home
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-main tracking-tight leading-tight">
+                        <span id="hero-title">Haiiii Pengunjung!,</span> <br class="hidden sm:inline">
+                        <span id="hero-subtitle" class="text-accent">selamat datang :></span>
+                    </h1>
+                    
+                    <p id="hero-desc" class="text-base sm:text-lg text-sub max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
+                        Ini adalah website yang isinya ga terlalu menarik sih, bingung juga mau isi apa :v
+                    </p>
+                    
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-3">
+                        <button onclick="switchPage('gallery')" class="btn-primary">
+                            <i class="fa-solid fa-images"></i>
+                            <span>Lihat Foto Fotoku! :></span>
+                        </button>
+                        <button onclick="switchPage('about')" class="btn-secondary">
+                            <i class="fa-solid fa-user"></i>
+                            <span>Tentang Aku</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hero Image Showcase -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <div class="absolute -top-6 -left-6 w-64 h-64 bg-[#ffb5d6]/25 rounded-full blur-3xl pointer-events-none"></div>
+                        
+                        <div class="card-warm overflow-hidden cursor-pointer group" onclick="openModalById(1)">
+                            <div class="relative h-[420px] sm:h-[460px] overflow-hidden">
+                                <img id="hero-featured-image" src="Galeri/foto1.jpeg" 
+                                     alt="Foto Utama Tresna" 
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#3d1c2a]/90 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+                                    <span class="text-xs font-bold uppercase tracking-wider text-rose-200">apaan nih</span>
+                                    <h3 class="text-xl font-bold mt-1">Tresna ?</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PAGE 2: GALLERY (Masonry 2 Kolom) -->
+        <section id="page-gallery" class="page-view hidden space-y-8">
+            <div class="pb-6 border-b border-adaptive max-w-3xl">
+                <div class="badge-warm mb-3">
+                    <i class="fa-solid fa-images"></i> Foto & Video Tresna
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-main tracking-tight">Kumpulan Foto & Video tresna ?</h2>
+                <p class="text-sub text-sm sm:text-base mt-2 font-medium">
+                    yaaaaa foto foto sama video aku sih, kebanyakan foto kospley wehwhewhehweh.
+                </p>
+            </div>
+
+            <!-- MASONRY 2-KOLOM GALERI -->
+            <div id="masonry-gallery" class="masonry-2-col min-h-[400px]">
+                <!-- Item foto & video di-render melalui JavaScript -->
+            </div>
+        </section>
+
+        <!-- PAGE 3: ABOUT ME (Karier Vertikal Bersusun, Gambar Kiri & Teks Kanan) -->
+        <section id="page-about" class="page-view hidden space-y-10">
+            
+            <!-- Profil Ringkas -->
+            <div class="card-warm p-8 sm:p-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    
+                    <div class="lg:col-span-4 flex justify-center">
+                        <div class="w-56 h-56 sm:w-72 sm:h-72 rounded-3xl overflow-hidden shadow-lg border-4 border-adaptive bg-pill">
+                            <img id="about-avatar" src="Galeri/foto1.jpeg" alt="Foto Profil Tresna" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-8 space-y-5 text-center lg:text-left">
+                        <div class="badge-warm">
+                            <i class="fa-solid fa-user"></i> kenali aku!
+                        </div>
+                        <h2 id="about-title" class="text-3xl sm:text-4xl font-extrabold text-main tracking-tight">
+                            Halooooo, aku Tresnaa
+                        </h2>
+                        
+                        <div id="about-bio-container" class="space-y-3 text-sub text-base leading-relaxed font-medium">
+                            <!-- Paragraf bio di-render via JS -->
+                        </div>
+
+                        <!-- Skill Badges -->
+                        <div id="about-tags-container" class="pt-2 flex flex-wrap justify-center lg:justify-start gap-2">
+                            <!-- Skill badges di-render via JS -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- BAGIAN KARIER / PROYEK (Bersusun Vertikal) -->
+            <div class="space-y-6">
+                <div class="flex items-center justify-between pb-3 border-b border-adaptive">
+                    <h3 class="text-2xl font-extrabold text-main flex items-center gap-3">
+                        <i class="fa-solid fa-briefcase text-accent"></i>
+                        <span>koleksi proyek aku :v</span>
+                    </h3>
+                    <span class="text-xs text-sub font-semibold">Urutan Vertikal</span>
+                </div>
+
+                <!-- LIST KOTAK PROYEK -->
+                <div id="projects-list-container" class="space-y-6">
+                    <!-- Dynamic rendering via JS -->
+                </div>
+            </div>
+
+        </section>
+
+        <!-- PAGE 4: SOCIAL MEDIA & GAMING -->
+        <section id="page-social" class="page-view hidden space-y-10">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <div class="badge-warm">
+                    <i class="fa-solid fa-share-nodes"></i> Kontak & Akun Game!
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-main tracking-tight">Media Sosial, Kontak & Game Tresna</h2>
+                <p class="text-sub text-sm sm:text-base font-medium">
+                    Hubungi aku, mampir ke sosmed, atau mabar bareng lewat daftar akun di bawah ini!
+                </p>
+            </div>
+
+            <!-- Social Cards Grid -->
+            <div id="social-grid-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Dynamic rendering via JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-auto footer-adaptive border-t py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-xl bg-[#d44d86] text-white flex items-center justify-center font-bold text-xs shadow-sm">(⁠≧⁠▽⁠≦⁠)</div>
+                <span class="text-sm font-extrabold text-main">Tresna's Website</span>
+            </div>
+            <p class="text-xs text-sub font-semibold">
+                dibuat buat karena iseng mwehhehhe.
+            </p>
+        </div>
+    </footer>
+
+    <!-- POP-UP LIGHTBOX MODAL -->
+    <div id="photo-modal" class="fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+        
+        <!-- Backdrop Blur Gelap -->
+        <div class="fixed inset-0 bg-[#1a0a11]/85 backdrop-blur-md transition-opacity" onclick="closeModal()"></div>
+
+        <!-- Card Pop-Up Container -->
+        <div class="relative w-full max-w-5xl footer-adaptive rounded-3xl shadow-2xl border border-adaptive overflow-hidden z-10 transform scale-95 transition-transform duration-300 flex flex-col md:flex-row max-h-[90vh]">
+            
+            <!-- Tombol Tutup (X) -->
+            <button onclick="closeModal()" aria-label="Tutup Pop-up" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-[#3d1c2a]/70 hover:bg-[#d44d86] text-white flex items-center justify-center backdrop-blur-sm transition-all focus:outline-none">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- SISI KIRI: Media Pop-up (Foto / Video) -->
+            <div class="w-full md:w-3/5 bg-slate-950 flex items-center justify-center relative min-h-[340px] md:min-h-[520px] overflow-hidden">
+                <!-- 1. Tampilan Gambar -->
+                <img id="modal-image" src="" alt="Detail Foto Pop-up" class="max-h-[65vh] md:max-h-[85vh] w-full object-contain p-2 hidden">
+                
+                <!-- 2. Tampilan Video (.mp4 lokal / URL langsung) -->
+                <video id="modal-video" controls playsinline class="max-h-[65vh] md:max-h-[85vh] w-full object-contain p-2 hidden">
+                    Browser kamu tidak mendukung pemutar video.
+                </video>
+                
+                <!-- Tombol Navigasi Kiri & Kanan -->
+                <button onclick="navigateModal(-1)" aria-label="Media Sebelumnya" class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center backdrop-blur-md transition-all focus:outline-none">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button onclick="navigateModal(1)" aria-label="Media Selanjutnya" class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center backdrop-blur-md transition-all focus:outline-none">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- SISI KANAN: Teks Informasi & Cerita Media (Tanpa Tanggal & Lokasi) -->
+            <div class="w-full md:w-2/5 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto footer-adaptive">
+                
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span id="modal-category" class="badge-warm">
+                            Fotografi
+                        </span>
+                        <span id="modal-counter" class="text-xs font-semibold text-sub">
+                            1 / 32
+                        </span>
+                    </div>
+
+                    <h3 id="modal-title" class="text-2xl font-bold text-main leading-snug">
+                        Judul Media
+                    </h3>
+
+                    <hr class="border-adaptive">
+
+                    <!-- Info Teknis Perangkat -->
+                    <div class="space-y-2.5 text-xs sm:text-sm text-sub">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-camera text-accent mt-0.5 w-4 text-center"></i>
+                            <div>
+                                <span class="font-bold text-main">Perangkat / Sumber:</span>
+                                <span id="modal-camera" class="ml-1">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Deskripsi & Kisah Media -->
+                    <div class="pt-2">
+                        <h4 class="text-xs font-extrabold text-sub uppercase tracking-wider mb-2">Cerita momen ini</h4>
+                        <p id="modal-description" class="text-main text-xs sm:text-sm leading-relaxed font-medium">
+                            Deskripsi media.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Footer Tombol Pop-up -->
+                <div class="pt-6 mt-6 border-t border-adaptive flex items-center justify-between gap-3">
+                    <button onclick="shareCurrentPhoto()" class="px-4 py-2.5 bg-pill hover:opacity-80 text-accent rounded-xl text-xs font-bold transition-all flex items-center gap-2 border border-adaptive">
+                        <i class="fa-solid fa-share-nodes"></i>
+                        <span>Bagikan Tautan</span>
+                    </button>
+
+                    <button onclick="closeModal()" class="px-5 py-2.5 bg-[#d44d86] hover:bg-[#b83a6f] text-white rounded-xl text-xs font-bold transition-all">
+                        Tutup
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT CENTRALIZED DATA & LOGIC -->
+    <script>
+        /* ==========================================================================
+           0. DARK MODE / LIGHT MODE HANDLER
+           ========================================================================== */
+        function applyTheme(isDark) {
+            const htmlEl = document.documentElement;
+            const iconDesktop = document.getElementById('theme-icon-desktop');
+            const iconMobile = document.getElementById('theme-icon-mobile');
+
+            if (isDark) {
+                htmlEl.classList.add('dark');
+                if (iconDesktop) iconDesktop.className = 'fa-solid fa-sun text-base';
+                if (iconMobile) iconMobile.className = 'fa-solid fa-sun text-sm';
+            } else {
+                htmlEl.classList.remove('dark');
+                if (iconDesktop) iconDesktop.className = 'fa-solid fa-moon text-base';
+                if (iconMobile) iconMobile.className = 'fa-solid fa-moon text-sm';
+            }
+        }
+
+        function toggleTheme() {
+            const isCurrentlyDark = document.documentElement.classList.contains('dark');
+            const nextDark = !isCurrentlyDark;
+            localStorage.setItem('tresna-theme', nextDark ? 'dark' : 'light');
+            applyTheme(nextDark);
+        }
+
+        // Inisialisasi tema awal sebelum render
+        (function initTheme() {
+            const savedTheme = localStorage.getItem('tresna-theme');
+            if (savedTheme === 'dark') {
+                applyTheme(true);
+            } else {
+                applyTheme(false);
+            }
+        })();
+
+        /* ==========================================================================
+           1. DATA KONTEN TERPUSAT (EDIT DI SINI)
+           ========================================================================== */
+        
+        const PROFILE_DATA = {
+            brandName: "TresnaLens",
+            brandSubtitle: "Website tresna ceritanya",
+            heroTitle: "Haiiii Pengunjung!,",
+            heroSubtitle: "selamat datang :>",
+            heroDesc: "Ini adalah website yang isinya ga terlalu menarik sih, bingung juga mau isi apa :v",
+            aboutTitle: "Halooooo, aku Tresnaa",
+            aboutBio: [
+                "aku suka coba coba dan kadang ga bisa sampai beres karena kesulitan yang sulit... tapi kalau minat banget bakalan terus dicobain siii",
+                "jujur gatau mau isi apa lagi di ini."
+            ],
+            avatarImage: "Galeri/foto1.jpeg",
+            tags: [
+                { icon: "fa-camera", label: "hape poko ep tuju" },
+                { icon: "fa-sliders", label: "ngedit pake filter tiktok, meitu, beautycam" },
+                { icon: "fa-masks-theater", label: "Cosplay & Portrait Photography" },
+            ]
+        };
+
+        const GALLERY_DATA = [
+            {
+                id: 1,
+                type: "image",
+                title: "Foto favorit",
+                category: "selfie",
+                image: "Galeri/foto1.jpeg",
+                aspectRatio: "aspect-[3/4]",
+                camera: "Poko Ep Tujuh",
+                description: "foto favorit Tresna sekarang :>"
+            },
+            {
+                id: 2,
+                type: "video",
+                title: "pose pose imut",
+                category: "selfie",
+                videoUrl: "https://ik.imagekit.io/tresnafolder/Galeri/poseimut.mp4",
+                aspectRatio: "aspect-[9/16]",
+                camera: "Poko Ep Tujuh",
+                description: "kyaaaa ><"
+            },
+            {
+                id: 3,
+                type: "image",
+                title: "selpi",
+                category: "selfie",
+                image: "Galeri/apaya.jpg",
+                aspectRatio: "aspect-[3/4]",
+                camera: "Poko Ep Tujuh",
+                description: "mmmm off shoulder...."
+            },
+            {
+                id: 4,
+                type: "image",
+                title: "Megahnya Gemerlap Kota Jakarta",
+                category: "selfie",
+                image: "https://ik.imagekit.io/tresnafolder/Galeri/aw.jpg",
+                aspectRatio: "aspect-[3/4]",
+                camera: "Poko Ep Tujuh",
+                description: "liat aku dong :>"
+            },
+            {
+                id: 5,
+                type: "image",
+                title: "lagi di mobil",
+                category: "selfie",
+                image: "https://ik.imagekit.io/tresnafolder/Galeri/dimobil.jpg",
+                aspectRatio: "aspect-[4/4]",
+                camera: "Poko Ep Tujuh",
+                description: "lagi dimobil ama temen deket."
+            },
+            {
+                id: 6,
+                type: "image",
+                title: "otpit ngelamar kerja",
+                category: "selfie jauh",
+                image: "https://ik.imagekit.io/tresnafolder/Galeri/bajulamarankerja.jpg",
+                aspectRatio: "aspect-[9/16]",
+                camera: "Poko Ep Tujuh",
+                description: "ngelamar kerja kayak gini ningkatin kesempatan keterima ga ya?:v"
+            },
+            {
+                id: 7,
+                type: "image",
+                title: "poto poto",
+                category: "selfie",
+                image: "https://ik.imagekit.io/tresnafolder/Galeri/ciss.jpg",
+                aspectRatio: "aspect-[3/4]",
+                camera: "Poko Ep Tujuh",
+                description: "ripiw asesoris baruu."
+            },
+            {
+                id: 8,
+                type: "video",
+                title: "dance",
+                category: "cosplay & dance",
+                videoUrl: "https://ik.imagekit.io/tresnafolder/Galeri/Kawaiikute.mp4",
+                aspectRatio: "aspect-[9/16]",
+                camera: "Poko Ep Tujuh",
+                description: "chuu kawaiikute gomen-eun ><."
+            },
+            {
+                id: 9,
+                type: "video",
+                title: "Patpat Video Sample",
+                category: "Video Lokal",
+                videoUrl: "https://ik.imagekit.io/tresnafolder/Galeri/patpat.mp4",
+                aspectRatio: "aspect-[9/16]",
+                camera: "Poko Ep Tujuh",
+                description: "pat pat whwhwhwhw."
+            },
+            {
+                id: 10,
+                type: "image",
+                title: "filter emot",
+                category: "selfie",
+                image: "https://ik.imagekit.io/tresnafolder/Galeri/filternutupin.jpg",
+                aspectRatio: "aspect-[3/4]",
+                camera: "Poko Ep Tujuh",
+                description: "nyoba nyoba pilter."
+            },
+            {
+                id: 11,
+                type: "image",
+                title: "ripiw",
+                category: "selfie",
+                image: "https://ik.imagekit.io/tresnafolder/Galeri/ripiwcelana.jpg",
+                aspectRatio: "aspect-[9/16]",
+                camera: "Poko Ep Tujuh",
+                description: "celana pendek"
+            },
+            {
+                id: 12,
+                type: "image",
+                title: "kacamata",
+                category: "selfie",
+                image: "https://ik.imagekit.io/tresnafolder/Galeri/kacamatalagi.png",
+                aspectRatio: "aspect-[9/13]",
+                camera: "Poko Ep Tujuh",
+                description: "kupakai kacamata, apa kaw lebih suka?:V"
+            },
+            {
+                id: 13,
+                type: "image",
+                title: "baju ospek",
+                category: "selfie",
+                image: "https://ik.imagekit.io/tresnafolder/Galeri/tengok.jpg",
+                aspectRatio: "aspect-[16/9]",
+                camera: "Poko Ep Tujuh",
+                description: "heyy, lihat sinii"
+            },
+            {
+                id: 14,
+                type: "image",
+                title: "heels",
+                category: "selfie",
+                image: "https://ik.imagekit.io/tresnafolder/Galeri/lookatmyheelshehe.jpg",
+                aspectRatio: "aspect-[9/20]",
+                camera: "Poko Ep Tujuh",
+                description: "barang kawe soalnya louboutin mahal"
+            },
+            {
+                id: 15,
+                type: "video",
+                title: "asesoris",
+                category: "video selfie",
+                videoUrl: "https://ik.imagekit.io/tresnafolder/Galeri/ripiwasesoris.mp4",
+                aspectRatio: "aspect-[16/9]",
+                camera: "Poko Ep Tujuh",
+                description: "jepit rambut, kalung, choker, earring..."
+            },
+            {
+                id: 16,
+                type: "image",
+                title: "kacamata",
+                category: "selfie",
+                image: "https://ik.imagekit.io/tresnafolder/Galeri/kacamata.jpg",
+                aspectRatio: "aspect-[3/4]",
+                camera: "Poko Ep Tujuh",
+                description: "kacamata lagi"
+            },
+            {
+                id: 17,
+                type: "image",
+                title: "kacamata",
+                category: "selfie",
+                image: "https://ik.imagekit.io/tresnafolder/Galeri/flirt1.jpg",
+                aspectRatio: "aspect-[9/16]",
+                camera: "Poko Ep Tujuh",
+                description: "eumm"
+            },
+            {
+                id: 18,
+                type: "image",
+                title: "selpi",
+                category: "cosplay",
+                image: "Galeri/astolpo.jpg",
+                aspectRatio: "aspect-[4/4]",
+                camera: "Poko Ep Tujuh",
+                description: "astolpo batim :v"
+            },
+            {
+                id: 19,
+                type: "image",
+                title: "rebahan",
+                category: "selfie",
+                image: "https://ik.imagekit.io/tresnafolder/Galeri/wink.jpg",
+                aspectRatio: "aspect-[3/4]",
+                camera: "Poko Ep Tujuh",
+                description: "winkk"
+            },
+            {
+                id: 20,
+                type: "image",
+                title: "tali",
+                category: "cosplay",
+                image: "Galeri/tali.jpg",
+                aspectRatio: "aspect-[16/9]",
+                camera: "Poko Ep Tujuh",
+                description: "waduhhh"
+            },
+            {
+                id: 21,
+                type: "video",
+                title: "dimain mainin rambutku",
+                category: "selfie",
+                videoUrl: "https://ik.imagekit.io/tresnafolder/Galeri/dimaininrambutnya.mp4",
+                aspectRatio: "aspect-[9/16]",
+                camera: "Poko Ep Tujuh",
+                description: "lho ya boleh wong ditawari"
+            },
+            {
+                id: 22,
+                type: "video",
+                title: "pose pose imut",
+                category: "selfie",
+                videoUrl: "https://ik.imagekit.io/tresnafolder/Galeri/rekamanfilterbiru.mp4",
+                aspectRatio: "aspect-[9/16]",
+                camera: "Poko Ep Tujuh",
+                description: "filter biru tigtog"
+            },
+            {
+                id: 23,
+                type: "video",
+                title: "ripiw heels kw",
+                category: "selfie",
+                videoUrl: "https://ik.imagekit.io/tresnafolder/Galeri/ripiwheels.mp4",
+                aspectRatio: "aspect-[9/16]",
+                camera: "Poko Ep Tujuh",
+                description: "enak sih, lucu liatnya :>"
+            },
+            {
+                id: 24,
+                type: "video",
+                title: "ripiw kacamata",
+                category: "selfie",
+                videoUrl: "https://ik.imagekit.io/tresnafolder/Galeri/ripiwkacamata.mp4",
+                aspectRatio: "aspect-[9/16]",
+                camera: "Poko Ep Tujuh",
+                description: "kacamata tanpa kaca, jadi frame doang"
+            },
+            {
+                id: 25,
+                type: "video",
+                title: "astolpo",
+                category: "cosplay",
+                videoUrl: "https://ik.imagekit.io/tresnafolder/Galeri/astolpovidio.mp4",
+                aspectRatio: "aspect-[16/9]",
+                camera: "Poko Ep Tujuh",
+                description: "ur local astolpo"
+            },
+            {
+                id: 26,
+                type: "image",
+                title: "full body",
+                category: "selfie",
+                image: "https://ik.imagekit.io/tresnafolder/Galeri/fulbodi.jpg",
+                aspectRatio: "aspect-[9/25]",
+                camera: "Poko Ep Tujuh",
+                description: "full bodi kuyus gweh"
+            },
+            {
+                id: 27,
+                type: "image",
+                title: "baju putih",
+                category: "selfie",
+                image: "https://ik.imagekit.io/tresnafolder/Galeri/bajungelamarkerja.jpg",
+                aspectRatio: "aspect-[9/16]",
+                camera: "Poko Ep Tujuh",
+                description: "baju lamaran kerja dan ospeg"
+            },
+            {
+                id: 28,
+                type: "image",
+                title: "selpi",
+                category: "selfie",
+                image: "Galeri/apaya2.jpg",
+                aspectRatio: "aspect-[3/4]",
+                camera: "Poko Ep Tujuh",
+                description: "mmmm off shoulder...."
+            },
+            {
+                id: 29,
+                type: "image",
+                title: "mirror selfie",
+                category: "selfie",
+                image: "https://ik.imagekit.io/tresnafolder/Galeri/mirror.jpg",
+                aspectRatio: "aspect-[9/16]",
+                camera: "Poko Ep Tujuh",
+                description: "miror miror on da wal"
+            },
+            {
+                id: 30,
+                type: "image",
+                title: "selpi",
+                category: "selfie",
+                image: "Galeri/peace.jpg",
+                aspectRatio: "aspect-[3/4]",
+                camera: "Poko Ep Tujuh",
+                description: "cissss"
+            },
+            {
+                id: 31,
+                type: "image",
+                title: "selpi",
+                category: "cosplay",
+                image: "Galeri/astolpojuga.jpg",
+                aspectRatio: "aspect-[4/4]",
+                camera: "Poko Ep Tujuh",
+                description: "hehehee"
+            },
+            {
+                id: 32,
+                type: "image",
+                title: "baju cowogs",
+                category: "selfie",
+                image: "https://ik.imagekit.io/tresnafolder/Galeri/ganteng.jpg",
+                aspectRatio: "aspect-[9/16]",
+                camera: "Poko Ep Tujuh",
+                description: "kayaknya ini paling maskulin :V"
+            }
+        ];
+
+        const PROJECTS_DATA = [
+            {
+                id: 1,
+                period: "2023 - Sekarang",
+                category: "Pariwisata & Jurnalistik Visual",
+                title: "Lead Visual Photographer",
+                organization: "Nusantara Exploration Media",
+                image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=600&q=80",
+                desc: "Memimpin tim dokumentasi visual untuk memetakan keindahan alam dan budaya lokal Indonesia. Mengelola penerbitan lebih dari 50+ esai foto ekspedisi pariwisata nasional."
+            },
+            {
+                id: 2,
+                period: "2022 - 2023",
+                category: "Pameran Seni Fine Art",
+                title: "Kurator & Fotografer Pameran Solo",
+                organization: "Galeri Seni Visual Jakarta",
+                image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=600&q=80",
+                desc: "Menggelar pameran foto bertajuk 'Jejak Senja Nusantara' yang menampilkan 30 karya cetak lanskap alam pilihan serta menerbitkan buku foto komersial edisi terbatas."
+            },
+            {
+                id: 3,
+                period: "2020 - 2022",
+                category: "Fotografi Komersial & Arsitektur",
+                title: "Commercial & Architecture Photographer",
+                organization: "Studio Visual Indonesia",
+                image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=600&q=80",
+                desc: "Bekerja sama dengan berbagai firma arsitektur dan resor pariwisata untuk mendokumentasikan desain bangunan interior serta lanskap luar ruangan bernilai estetika tinggi."
+            }
+        ];
+
+        // DAFTAR SOCIAL MEDIA & GAMING (LinkedIn dihapus, platform sosmed & game ditambahkan)
+        const SOCIAL_DATA = [
+            {
+                id: "instagram",
+                name: "Instagram",
+                badgeText: "@shiroinexuvia",
+                link: "https://instagram.com/shiroinexuvia",
+                iconClass: "fa-brands fa-instagram",
+                iconStyle: "background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);",
+                desc: "Koleksi foto & keseharian aku di Instagram!",
+                actionLabel: "Kunjungi Profil"
+            },
+            {
+                id: "youtube",
+                name: "Channel YouTube",
+                badgeText: "@trxsnaaa",
+                link: "https://youtube.com/@trxsnaaa",
+                iconClass: "fa-brands fa-youtube",
+                iconStyle: "background-color: #ff0000;",
+                desc: "Koleksi video aku main game & konten random.",
+                actionLabel: "Tonton Video"
+            },
+            {
+                id: "whatsapp",
+                name: "WhatsApp Chat",
+                badgeText: "Slow Respon :V",
+                link: "https://wa.me/628817842948",
+                iconClass: "fa-brands fa-whatsapp",
+                iconStyle: "background-color: #25d366;",
+                desc: "Ngobrol ama akuw, bahas apa aja boleh.",
+                actionLabel: "Kirim Pesan"
+            },
+            {
+                id: "telegram",
+                name: "Telegram",
+                badgeText: "@trxsnaaa",
+                link: "https://t.me/trxsnaaa",
+                iconClass: "fa-brands fa-telegram",
+                iconStyle: "background-color: #24A1DE;",
+                desc: "Chat santai atau kirim file lewat Telegram.",
+                actionLabel: "Buka Telegram"
+            },
+            {
+                id: "discord",
+                name: "Discord",
+                badgeText: "trxsnaaa",
+                copyText: "trxsnaaa",
+                iconClass: "fa-brands fa-discord",
+                iconStyle: "background-color: #5865F2;",
+                desc: "Username Discord: trxsnaaa (klik buat salin & mabar!).",
+                actionLabel: "Salin Username"
+            },
+            {
+                id: "github",
+                name: "GitHub",
+                badgeText: "Repository",
+                link: "https://github.com",
+                iconClass: "fa-brands fa-github",
+                iconStyle: "background-color: #24292e;",
+                desc: "Tempat nyimpen eksperimen koding & website iseng.",
+                actionLabel: "Lihat GitHub"
+            },
+            {
+                id: "reddit",
+                name: "Reddit",
+                badgeText: "Komunitas",
+                link: "https://reddit.com",
+                iconClass: "fa-brands fa-reddit-alien",
+                iconStyle: "background-color: #FF4500;",
+                desc: "Nongkrong baca-baca forum & meme random.",
+                actionLabel: "Buka Reddit"
+            },
+            {
+                id: "steam",
+                name: "Steam",
+                badgeText: "PC Gaming",
+                link: "https://steamcommunity.com",
+                iconClass: "fa-brands fa-steam",
+                iconStyle: "background: linear-gradient(135deg, #171a21, #2a475e);",
+                desc: "Add friend Steam buat mabar game PC bareng!",
+                actionLabel: "Kunjungi Steam"
+            },
+            {
+                id: "epicgames",
+                name: "Epic Games",
+                badgeText: "trxsnaaa",
+                copyText: "trxsnaaa",
+                iconClass: "fa-solid fa-gamepad",
+                iconStyle: "background-color: #2f2d2e;",
+                desc: "Display Name Epic Games: trxsnaaa (klaim game gratisan).",
+                actionLabel: "Salin ID Epic"
+            },
+            {
+                id: "genshin",
+                name: "Genshin Impact",
+                badgeText: "Asia Server",
+                copyText: "800000000",
+                iconClass: "fa-solid fa-wand-sparkles",
+                iconStyle: "background: linear-gradient(135deg, #4b6cb7, #182848);",
+                desc: "UID Asia: 800000000 (klik buat salin UID & co-op!).",
+                actionLabel: "Salin UID"
+            },
+            {
+                id: "mlbb",
+                name: "Mobile Legends",
+                badgeText: "MLBB",
+                copyText: "123456789 (1234)",
+                iconClass: "fa-solid fa-shield-halved",
+                iconStyle: "background: linear-gradient(135deg, #d97706, #92400e);",
+                desc: "ID MLBB: 123456789 (1234) — ayo push rank atau classic!",
+                actionLabel: "Salin ID MLBB"
+            },
+            {
+                id: "roblox",
+                name: "Roblox",
+                badgeText: "@trxsnaaa",
+                link: "https://www.roblox.com",
+                iconClass: "fa-solid fa-cubes",
+                iconStyle: "background-color: #1f2937;",
+                desc: "Username Roblox: @trxsnaaa — ayo main obby atau horror!",
+                actionLabel: "Buka Roblox"
+            },
+            {
+                id: "geometrydash",
+                name: "Geometry Dash",
+                badgeText: "GD Player",
+                copyText: "trxsnaaa",
+                iconClass: "fa-solid fa-square-caret-right",
+                iconStyle: "background: linear-gradient(135deg, #16a34a, #eab308);",
+                desc: "Username GD: trxsnaaa — lagi grinding demon level :v",
+                actionLabel: "Salin Username GD"
+            },
+            {
+                id: "email",
+                name: "Hubungi Via Email",
+                badgeText: "Surat Elektronik",
+                copyText: "belumada@email.com",
+                iconClass: "fa-solid fa-envelope",
+                iconStyle: "background-color: #d44d86;",
+                desc: "belumada@email.com",
+                actionLabel: "Salin Email"
+            }
+        ];
+
+
+        /* ==========================================================================
+           2. LOGIKA APLIKASI WEB (RENDER & INTERAKSI)
+           ========================================================================== */
+        
+        let currentModalIndex = 0;
+        let currentPage = 'home';
+
+        // SWAP HALAMAN TAB (MULTI-VIEW SPA)
+        function switchPage(pageId) {
+            currentPage = pageId;
+
+            document.querySelectorAll('.page-view').forEach(view => {
+                view.classList.add('hidden');
+                view.classList.remove('animate-fade-in');
+            });
+
+            const targetPage = document.getElementById(`page-${pageId}`);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                void targetPage.offsetWidth; // trigger reflow
+                targetPage.classList.add('animate-fade-in');
+            }
+
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            const activeBtn = document.getElementById(`nav-btn-${pageId}`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+
+            document.getElementById('mobile-menu').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // RENDER DATA PROFIL
+        function renderProfile() {
+            document.getElementById('brand-title').textContent = PROFILE_DATA.brandName;
+            document.getElementById('brand-subtitle').textContent = PROFILE_DATA.brandSubtitle;
+            document.getElementById('hero-title').textContent = PROFILE_DATA.heroTitle;
+            document.getElementById('hero-subtitle').textContent = PROFILE_DATA.heroSubtitle;
+            document.getElementById('hero-desc').textContent = PROFILE_DATA.heroDesc;
+            document.getElementById('hero-featured-image').src = PROFILE_DATA.avatarImage;
+            document.getElementById('about-avatar').src = PROFILE_DATA.avatarImage;
+            document.getElementById('about-title').textContent = PROFILE_DATA.aboutTitle;
+
+            // Bio paragraphs
+            const bioContainer = document.getElementById('about-bio-container');
+            bioContainer.innerHTML = PROFILE_DATA.aboutBio.map(p => `<p>${p}</p>`).join('');
+
+            // Skill tags
+            const tagsContainer = document.getElementById('about-tags-container');
+            tagsContainer.innerHTML = PROFILE_DATA.tags.map(t => `
+                <span class="px-3.5 py-1.5 bg-pill text-main text-xs font-bold rounded-xl border border-adaptive flex items-center gap-1.5">
+                    <i class="fa-solid ${t.icon} text-accent"></i>${t.label}
+                </span>
+            `).join('');
+        }
+
+        // RENDER MASONRY GALERI (2 KOLOM: FOTO & VIDEO - TANPA TANGGAL & LOKASI)
+        function renderGallery() {
+            const container = document.getElementById('masonry-gallery');
+            container.innerHTML = '';
+
+            GALLERY_DATA.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'masonry-item group cursor-pointer overflow-hidden rounded-2xl footer-adaptive border border-adaptive shadow-sm hover:shadow-xl transition-all duration-300 relative';
+                
+                if (item.type === 'video') {
+                    card.innerHTML = `
+                        <div class="relative overflow-hidden w-full bg-slate-900 ${item.aspectRatio}">
+                            <video src="${item.videoUrl}" 
+                                   muted 
+                                   loop 
+                                   autoplay 
+                                   playsinline
+                                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </video>
+                            
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#3d1c2a]/90 via-[#3d1c2a]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white">
+                                <span class="text-[10px] uppercase font-bold tracking-widest bg-[#d44d86] text-white px-2.5 py-1 rounded-md w-max mb-2">
+                                    ${item.category}
+                                </span>
+                                <h3 class="text-base sm:text-lg font-bold leading-tight drop-shadow-sm">${item.title}</h3>
+                                <p class="text-xs text-rose-100 mt-1 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-film text-[#ffb5d6]"></i> Klik untuk putar dengan suara
+                                </p>
+                            </div>
+
+                            <div class="absolute top-3 right-3 w-9 h-9 rounded-full bg-[#d44d86]/90 backdrop-blur-md text-white flex items-center justify-center shadow-md">
+                                <i class="fa-solid fa-play text-xs ml-0.5"></i>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    card.innerHTML = `
+                        <div class="relative overflow-hidden w-full ${item.aspectRatio}">
+                            <img src="${item.image}" 
+                                 alt="${item.title}" 
+                                 loading="lazy"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#3d1c2a]/90 via-[#3d1c2a]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white">
+                                <span class="text-[10px] uppercase font-bold tracking-widest bg-[#d44d86] text-white px-2.5 py-1 rounded-md w-max mb-2">
+                                    ${item.category}
+                                </span>
+                                <h3 class="text-base sm:text-lg font-bold leading-tight drop-shadow-sm">${item.title}</h3>
+                                <p class="text-xs text-rose-100 mt-1 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-eye text-[#ffb5d6]"></i> Klik untuk lihat detail
+                                </p>
+                            </div>
+
+                            <div class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/30 backdrop-blur-md text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md">
+                                <i class="fa-solid fa-expand text-xs"></i>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                card.addEventListener('click', () => openModalByIndex(index));
+                container.appendChild(card);
+            });
+        }
+
+        // RENDER KARIER & PROYEK (BERSUSUN KE BAWAH)
+        function renderProjects() {
+            const container = document.getElementById('projects-list-container');
+            container.innerHTML = PROJECTS_DATA.map(item => `
+                <div class="card-warm p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                    <div class="w-full sm:w-48 h-36 sm:h-36 rounded-2xl overflow-hidden shrink-0 bg-pill border border-adaptive">
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1 space-y-2 text-center sm:text-left">
+                        <div class="flex flex-wrap items-center justify-center sm:justify-start gap-3">
+                            <span class="px-3 py-1 rounded-full bg-pill text-accent border border-adaptive text-xs font-bold">${item.period}</span>
+                            <span class="text-xs font-bold text-sub">${item.category}</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-main">${item.title}</h4>
+                        <p class="text-sm font-semibold text-sub">${item.organization}</p>
+                        <p class="text-main text-xs sm:text-sm leading-relaxed pt-1 font-medium">
+                            ${item.desc}
+                        </p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // RENDER KARTU MEDIA SOSIAL & GAMING
+        function renderSocialMedia() {
+            const container = document.getElementById('social-grid-container');
+            container.innerHTML = SOCIAL_DATA.map(item => {
+                if (item.copyText) {
+                    return `
+                        <div class="card-warm p-6 cursor-pointer group" onclick="copyToClipboard('${item.copyText}', '${item.name} (${item.copyText}) berhasil disalin!')">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-2xl text-white flex items-center justify-center text-xl shadow-md shrink-0" style="${item.iconStyle}">
+                                    <i class="${item.iconClass}"></i>
+                                </div>
+                                <span class="badge-warm">${item.badgeText}</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-main group-hover:text-accent transition-colors">${item.name}</h3>
+                            <p class="text-xs text-sub mt-1 font-medium">${item.desc}</p>
+                            <div class="mt-5 text-xs font-bold text-accent flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+                                <span>${item.actionLabel}</span>
+                                <i class="fa-solid fa-copy"></i>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                return `
+                    <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="card-warm p-6 group block">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-2xl text-white flex items-center justify-center text-xl shadow-md shrink-0" style="${item.iconStyle}">
+                                <i class="${item.iconClass}"></i>
+                            </div>
+                            <span class="badge-warm">${item.badgeText}</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-main group-hover:text-accent transition-colors">${item.name}</h3>
+                        <p class="text-xs text-sub mt-1 font-medium">${item.desc}</p>
+                        <div class="mt-5 text-xs font-bold text-accent flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+                            <span>${item.actionLabel}</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+        }
+
+        // POP-UP LIGHTBOX MODAL HANDLERS
+        function resetModalMedia() {
+            const modalImg = document.getElementById('modal-image');
+            const modalVid = document.getElementById('modal-video');
+
+            modalImg.classList.add('hidden');
+            modalVid.classList.add('hidden');
+            modalVid.pause();
+            modalVid.removeAttribute('src');
+        }
+
+        function openModalByIndex(index) {
+            currentModalIndex = index;
+            const item = GALLERY_DATA[currentModalIndex];
+            if (!item) return;
+
+            resetModalMedia();
+
+            const modalImg = document.getElementById('modal-image');
+            const modalVid = document.getElementById('modal-video');
+
+            if (item.type === 'video') {
+                modalVid.src = item.videoUrl;
+                modalVid.classList.remove('hidden');
+                modalVid.play().catch(() => {});
+            } else {
+                modalImg.src = item.image;
+                modalImg.classList.remove('hidden');
+            }
+
+            document.getElementById('modal-title').textContent = item.title;
+            document.getElementById('modal-category').textContent = item.category;
+            document.getElementById('modal-camera').textContent = item.camera;
+            document.getElementById('modal-description').textContent = item.description;
+            document.getElementById('modal-counter').textContent = `${currentModalIndex + 1} / ${GALLERY_DATA.length}`;
+
+            const modal = document.getElementById('photo-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('.transform').classList.remove('scale-95');
+                modal.querySelector('.transform').classList.add('scale-100');
+            }, 10);
+
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openModalById(id) {
+            const index = GALLERY_DATA.findIndex(item => item.id === id);
+            openModalByIndex(index !== -1 ? index : 0);
+        }
+
+        function navigateModal(direction) {
+            currentModalIndex += direction;
+            if (currentModalIndex < 0) {
+                currentModalIndex = GALLERY_DATA.length - 1;
+            } else if (currentModalIndex >= GALLERY_DATA.length) {
+                currentModalIndex = 0;
+            }
+            openModalByIndex(currentModalIndex);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('photo-modal');
+            modal.classList.add('opacity-0');
+            modal.querySelector('.transform').classList.remove('scale-100');
+            modal.querySelector('.transform').classList.add('scale-95');
+            
+            setTimeout(() => {
+                resetModalMedia();
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        // UTILITIES
+        function copyToClipboard(text, message) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast(message || 'Berhasil disalin!');
+                }).catch(() => fallbackCopy(text, message));
+            } else {
+                fallbackCopy(text, message);
+            }
+        }
+
+        function fallbackCopy(text, message) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast(message || 'Berhasil disalin!');
+        }
+
+        function shareCurrentPhoto() {
+            const item = GALLERY_DATA[currentModalIndex];
+            copyToClipboard(window.location.href, `Tautan "${item.title}" berhasil disalin!`);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // KEYBOARD EVENT LISTENERS
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('photo-modal');
+            if (!modal.classList.contains('hidden')) {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowLeft') navigateModal(-1);
+                if (e.key === 'ArrowRight') navigateModal(1);
+            }
+        });
+
+        // MOBILE MENU TOGGLE
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // INISIALISASI HALAMAN ON LOAD
+        window.onload = function() {
+            renderProfile();
+            renderGallery();
+            renderProjects();
+            renderSocialMedia();
+            switchPage('home');
+        };
+    </script>
+</body>
+</html>
